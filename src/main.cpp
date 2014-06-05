@@ -14,10 +14,10 @@ using namespace std;
 
 int main(int argc, char *argv[]) {
 
-	Logger::reportLevel() = Logger::DEBUG;
-
-	while(true)
-		LOG(Logger::DEBUG, " Message ");
+//	Logger::reportLevel() = Logger::DEBUG;
+//
+//	while(true)
+//		LOG(Logger::DEBUG, " Message ");
 
 	return 0;
 }
