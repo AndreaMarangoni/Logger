@@ -13,12 +13,6 @@
 #include <cstdio>
 #include <sstream>
 
-#define Log(level) \
-	if (	level  > Logger::reportLevel() ) ; \
-	else Logger().get(level)
-
-#define LOG(level,message) Log(level) << message
-
 template<typename Type>
 class Logger {
 public:

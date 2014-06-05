@@ -8,16 +8,11 @@
 
 #include <iostream>
 
-#include "logger/Logger.h"
+#include "logger/LogStdCerr.h"
 
 using namespace std;
 
 int main(int argc, char *argv[]) {
-
-//	Logger::reportLevel() = Logger::DEBUG;
-//
-//	while(true)
-//		LOG(Logger::DEBUG, " Message ");
 
 	return 0;
 }
