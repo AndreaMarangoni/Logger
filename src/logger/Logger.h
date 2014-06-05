@@ -11,20 +11,20 @@
 #include <sstream>
 
 #define Log(level) \
-	if (level > Logger::reportLevel()) ; \
-	Logger().get(level)
+	if (	level  > Logger::reportLevel() ) ; \
+	else Logger().get(level)
 
-#define LOG(level) Log(level)
+#define LOG(level,message) Log(level) << message
 
 class Logger {
 public:
 	enum Level {
-		NONE,
-		DEBUG,
-		INFO,
-		WARNING,
+		CRITICAL = 0,
 		ERROR,
-		CRITICAL
+		WARNING,
+		INFO,
+		DEBUG,
+		NONE
 	};
 
 	Logger();
@@ -35,7 +35,6 @@ private:
 	static const std::string toString(const Logger::Level& level);
 	Logger(const Logger&);
 	Logger& operator=(const Logger&);
-	Logger::Level verbosity_;
 	std::ostringstream os;
 };
 

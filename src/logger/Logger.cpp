@@ -7,34 +7,24 @@
 
 #include "Logger.h"
 #include "../time/Time.h"
+
 #include <cstdio>
 
 Logger::Level& Logger::reportLevel() {
-	static Logger::Level reportLevel_;
+	static Logger::Level reportLevel_ = DEBUG;
 	return reportLevel_;
 }
 
 const std::string Logger::toString(const Logger::Level& level) {
-	switch (level) {
-		case NONE:
-			return "NONE";
-			break;
-		case DEBUG:
-			return "DEBUG";
-			break;
-		case INFO:
-			return "INFO";
-			break;
-		case ERROR:
-			return "ERROR";
-			break;
-		case WARNING:
-			return "WARNING";
-			break;
-		default:
-			return "NONE";
-			break;
-	}
+	static std::string names[] ={
+				"CRITICAL",
+				"ERROR",
+				"WARNING",
+				"INFO",
+				"DEBUG",
+				"NONE"
+	};
+	return names[level];
 }
 
 Logger::Logger() {
@@ -49,7 +39,5 @@ Logger::~Logger() {
 std::ostringstream& Logger::get(Level level) {
 	os << "- " << Time().getCurrentTime();
 	os << " " << Logger::toString(level) << ": ";
-	os << std::string(level > DEBUG ? 0 : level - DEBUG, '\t');
-	verbosity_ = level;
 	return os;
 }
