@@ -40,7 +40,7 @@ private:
 
 template<typename Type>
 typename Logger<Type>::Level& Logger<Type>::reportLevel() {
-	static Logger<Type>::Level reportLevel_ = DEBUG;
+	static Logger<Type>::Level reportLevel_ = NONE;
 	return reportLevel_;
 }
 
