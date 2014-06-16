@@ -9,6 +9,7 @@
 #define LOGGER_H_
 
 #include "../time/Time.h"
+#include "../string/Format.h"
 
 #include <cstdio>
 #include <sstream>
@@ -46,11 +47,10 @@ typename Logger<Class>::Level& Logger<Class>::reportLevel() {
 }
 
 template<typename Class>
-FILE*& Logger<Class>::stream(){
+FILE*& Logger<Class>::stream() {
 	static FILE* stream_ = stderr;
 	return stream_;
 }
-
 
 template<typename Class>
 const std::string Logger<Class>::toString(const Logger::Level& level) {
@@ -70,7 +70,7 @@ Logger<Class>::~Logger() {
 }
 
 template<typename Class>
-std::ostringstream& Logger<Class>::get(Level level) {
+std::ostringstream& Logger<Class>::get(Logger::Level level) {
 	os << "- " << Time().getCurrentTime();
 	os << " " << Logger::toString(level) << ": ";
 	return os;

@@ -11,3 +11,4 @@ void LogStdCerr::Output(const std::string& message) {
 	fprintf(stderr, "%s", message.c_str());
 	fflush (stderr);
 }
+

@@ -13,21 +13,27 @@
 #include <string>
 
 #ifndef LOG_MAX_LEVEL
-#define LOG_MAX_LEVEL DEBUG
+#define LOG_MAX_LEVEL Logger<LogStdCerr>::DEBUG
 #endif
-#define LOG(level,message) \
+#define LOG(level) \
   if (level > LOG_MAX_LEVEL) ;\
-  else if (level > Log::ReportingLevel() || !Log::Stream()) ; \
-   else Log().Get(level) << message
+  else if (level > Log::reportLevel() || !Log::stream()) ; \
+  else Log().get(level)
+
+#define LOG_SOURCE_REF Format("%s [%s ,%u]", __PRETTY_FUNCTION__, __FILE__, __LINE__)
+
+#define Log STDCERRLog
 
 class LogStdCerr;
-class STDCERRLog : public Logger<LogStdCerr> {
+class STDCERRLog: public Logger<LogStdCerr> {
+
 };
 
-class LogStdCerr{
+class LogStdCerr {
 public:
-	typedef LogStdCerr Log;
-
+	static FILE*& stream() {
+		return Logger<LogStdCerr>::stream();
+	}
 	static void Output(const std::string& message);
 };
 
